@@ -46,9 +46,9 @@ Drones → Kafka → Processamento → Bancos especializados + Storage
 
 ---
 
-## Decisões Arquiteturais
+# Decisões Arquiteturais
 
-# Arquitetura orientada a eventos
+## Arquitetura orientada a eventos
 
 O uso do Kafka permite desacoplamento entre ingestão e processamento, garantindo resiliência e escalabilidade.
 
@@ -125,26 +125,26 @@ json
 # Trade-offs Técnicos
 
 ```Consistência vs Disponibilidade:```
-PostgreSQL → Consistência forte
-Kafka/Cassandra → Alta disponibilidade
+-PostgreSQL → Consistência forte
+-Kafka/Cassandra → Alta disponibilidade
 
 # Backup e Disaster Recovery
 
-Replicação multi-zona
-Snapshots periódicos
-Retenção no Kafka para reprocessamento
+-Replicação multi-zona
+-Snapshots periódicos
+-Retenção no Kafka para reprocessamento
 
 # Gargalos e Mitigação
 
-     Problema     |    Solução
-Pico de ingestão  |    Kafka
-Escrita massiva   |    Cassandra
-Arquivos grandes  |    S3
-Falhas de processamento |    Retry + DLQ
+```-Problema & Solução```
+- Pico de ingestão → Kafka
+- Escrita massiva → Cassandra
+- Arquivos grandes → S3
+- Falhas de processamento → Retry + DLQ
 
 # Escalabilidade
 
-A arquitetura suporta crescimento da frota sem necessidade de redesign:
-Adição de novos brokers Kafka
-Expansão de nós Cassandra
-Escala automática do storage
+- A arquitetura suporta crescimento da frota sem necessidade de redesign:
+- Adição de novos brokers Kafka
+- Expansão de nós Cassandra
+- Escala automática do storage
