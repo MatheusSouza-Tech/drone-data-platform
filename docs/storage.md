@@ -1,7 +1,7 @@
 # Onde guardar:
 S3 (ou MinIO)
 
-# Por que NÃO usar banco?
+# Por que não usar banco?
 Porque:
 
 arquivos são grandes
