@@ -124,15 +124,15 @@ json
 
 # Trade-offs Técnicos
 
-```Consistência vs Disponibilidade:```
--PostgreSQL → Consistência forte
--Kafka/Cassandra → Alta disponibilidade
+```- Consistência vs Disponibilidade:```
+- PostgreSQL → Consistência forte
+- Kafka/Cassandra → Alta disponibilidade
 
 # Backup e Disaster Recovery
 
--Replicação multi-zona
--Snapshots periódicos
--Retenção no Kafka para reprocessamento
+- Replicação multi-zona
+- Snapshots periódicos
+- Retenção no Kafka para reprocessamento
 
 # Gargalos e Mitigação
 
