@@ -82,13 +82,88 @@ Entidades principais:
 - Telemetria
 - Eventos
 - Arquivos
-- Logs de manutenção
+- Manutenção
+
+---
 
 Relacionamentos:
 
-- Drone → Missões (1:N)
-- Drone → Telemetria (1:N)
-- Missão → Arquivos (1:N)
+- Drone → Missões (**1:N**)  
+- Drone → Telemetria (**1:N**)  
+- Drone → Eventos (**1:N**)  
+- Drone → Manutenção (**1:N**)  
+- Missão → Arquivos (**1:N**) 
+
+---
+
+## Estrutura das Tabelas
+
+#### `drones`
+
+| Campo          | Descrição                          |
+|----------------|-----------------------------------|
+| id             | Identificador único do drone      |
+| model          | Modelo do drone                   |
+| status         | Estado atual                      |
+| battery_level  | Nível de bateria (%)              |
+
+---
+
+#### `missoes`
+
+| Campo       | Descrição              |
+|------------|------------------------|
+| id         | ID da missão           |
+| drone_id   | Drone responsável      |
+| start_time | Início                 |
+| end_time   | Fim                    |
+| status     | Status da missão       |
+
+---
+
+#### `telemetria`
+
+| Campo      | Descrição              |
+|-----------|------------------------|
+| drone_id  | Drone                  |
+| timestamp | Momento da coleta      |
+| latitude  | Latitude               |
+| longitude | Longitude              |
+| altitude  | Altura                 |
+| speed     | Velocidade             |
+
+---
+
+#### `eventos`
+
+| Campo       | Descrição            |
+|------------|----------------------|
+| drone_id   | Drone afetado        |
+| type       | Tipo do evento       |
+| timestamp  | Quando ocorreu       |
+| description| Detalhes             |
+
+---
+
+#### `arquivos`
+
+| Campo       | Descrição                  |
+|------------|----------------------------|
+| drone_id   | Drone                      |
+| mission_id | Missão                     |
+| url        | Caminho do arquivo         |
+| type       | Tipo (imagem, vídeo, log)  |
+| timestamp  | Momento                    |
+
+---
+
+#### `manutencao`
+
+| Campo       | Descrição              |
+|------------|------------------------|
+| drone_id   | Drone                  |
+| description| Serviço realizado      |
+| date       | Data                   |
 
 ---
 
@@ -114,17 +189,18 @@ Benefícios:
 
 Exemplo:
 
-json
+```json
 {
   "file_id": "123",
   "drone_id": "D1",
   "mission_id": "M1",
   "url": "s3://bucket/image.jpg"
 }
+```
 
 # Trade-offs Técnicos
 
-```- Consistência vs Disponibilidade:```
+```Consistência vs Disponibilidade:```
 - PostgreSQL → Consistência forte
 - Kafka/Cassandra → Alta disponibilidade
 
@@ -136,7 +212,7 @@ json
 
 # Gargalos e Mitigação
 
-```-Problema & Solução```
+```Problema & Solução```
 - Pico de ingestão → Kafka
 - Escrita massiva → Cassandra
 - Arquivos grandes → S3
