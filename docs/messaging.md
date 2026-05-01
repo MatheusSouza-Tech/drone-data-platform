@@ -1,25 +1,33 @@
 # Tecnologia
 
-Kafka é usado porque:
+### Kafka é usado porque:
 
-suporta milhões de eventos
-é distribuído
-tolerante a falhas
+- suporta milhões de eventos
+- é distribuído
+- tolerante a falhas
+
+---
 
 # Ordenação
-Partition key: drone_id
 
-Isso garante:
+### - Partition key: drone_id
 
-dados do mesmo drone em ordem
+### Isso garante:
+
+- dados do mesmo drone em ordem
+
+---
 
 # Retenção
-7 dias
 
-Por quê?
+### - 7 dias
 
-reprocessamento se der erro
+### Por quê?
+
+- reprocessamento se der erro
+
+---
 
 # Retry
-Consumer tenta novamente
-Falhou → vai pra DLQ (Dead Letter Queue)
+- Consumer tenta novamente
+- Falhou → vai pra DLQ (Dead Letter Queue)
